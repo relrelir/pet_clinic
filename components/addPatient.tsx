@@ -1,23 +1,21 @@
+import { IPatient } from "@/lib/db/models/patient";
+import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import {
   Box,
-  FormControl,
-  TextField,
-  Typography,
   Button,
   Dialog,
-  DialogTitle,
   DialogContent,
-  DialogContentText,
+  DialogTitle,
+  TextField,
+  Typography,
 } from "@mui/material";
-import PetTipe from "./petTipe";
-import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
-import { useContext, useState } from "react";
-import pageContext, { PageContext } from "../contexts/pageContext";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { PatientResult } from "../pages/api/patients";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { IPatient } from "@/lib/db/models/patient";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { useContext, useState } from "react";
+import pageContext, { PageContext } from "../contexts/pageContext";
+import { PatientResult } from "../pages/api/patients";
+import PetTipe from "./petTipe";
 
 export default function AddPatient({ openAdd, setOpenAdd }) {
   const [name, setName] = useState(null);
@@ -25,8 +23,7 @@ export default function AddPatient({ openAdd, setOpenAdd }) {
   const [petName, setPetName] = useState(null);
   const [petBirthDate, setPetBirthDate] = useState(null);
   const [petType, setPetType] = useState("");
-  const { patients, setPatients, isEdited, setIsEdited }: PageContext =
-    useContext(pageContext);
+  const { patients, setPatients }: PageContext = useContext(pageContext);
 
   const handleCloseAdd = () => {
     setOpenAdd(false);
@@ -35,16 +32,6 @@ export default function AddPatient({ openAdd, setOpenAdd }) {
   function handleDatePickerChange(date: number) {
     setPetBirthDate(date);
   }
-
-  const handleUpdateRow = () => {
-    setPatients((patients: IPatient[]) => {
-      const rowToUpdateIndex = patients.length;
-
-      return patients.map((patient, index) =>
-        index + 1 === rowToUpdateIndex ? { ...patient } : patient
-      );
-    });
-  };
 
   const createPatient = async () => {
     try {
@@ -58,7 +45,6 @@ export default function AddPatient({ openAdd, setOpenAdd }) {
       console.log("patient", patient);
       setPatients((patients: IPatient[]) => [...patients, patient]);
       handleCloseAdd();
-      // setIsEdited(!isEdited);
     } catch (error: any) {
       console.error(error);
     }

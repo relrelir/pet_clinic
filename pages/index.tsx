@@ -1,16 +1,11 @@
 import PetClinicDashboard from "@/components/pet-clinic-dashboard";
-import { IPatient } from "@/lib/db/models/patient";
 import fetchApi from "@/lib/fetch-api";
-import { Button, Typography } from "@mui/material";
 import type {
-  NextPage,
-  GetServerSidePropsResult,
-  GetStaticPropsResult,
-  GetStaticProps,
   GetServerSideProps,
+  GetServerSidePropsResult,
+  NextPage,
 } from "next";
 import { useState } from "react";
-import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 
 import pageContext, { PageContext } from "../contexts/pageContext";
 import { PatientsResult } from "./api/patients";
@@ -41,12 +36,9 @@ const Home: NextPage = (props: HomePageProps) => {
       petName: pat.petName,
       petType: pat.petType,
       petBirthDate: pat.petBirthDate,
-      // EditIcon: () => <EditIcon />,
     }))
   );
 
-  // patients.push(button);
-  // setPatients(patients);
   const [isEdited, setIsEdited] = useState(false);
 
   return (

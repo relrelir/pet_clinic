@@ -1,36 +1,20 @@
-import * as React from "react";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+import { Radio } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
 import ListItemText from "@mui/material/ListItemText";
+import MenuItem from "@mui/material/MenuItem";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
-import { useContext } from "react";
-import pageContext from "../contexts/pageContext";
-import { Box, FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
-// const ITEM_HEIGHT = 48;
-// const ITEM_PADDING_TOP = 8;
-// const MenuProps = {
-//   PaperProps: {
-//     style: {
-//       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-//       width: 250,
-//     },
-//   },
-// };
-
-const petTypes = ["Dog", "Cat", "Parrot"];
+const petTypes = ["Dog", "Cat", "Parrot"] as const;
 
 export default function PetTipe({ petType, setPetType }) {
-
   return (
     <div>
       <FormControl className="w-[13rem]">
         <InputLabel id="petTypeLabel">Pet Type:</InputLabel>
         <Select
-          onChange={(e) => setPetType(e.target.value)}
+          onChange={(e) => setPetType(`${e.target.value}` as const)}
           value={petType}
           input={<OutlinedInput label="Pet Type" />}
           renderValue={(v) => v}
@@ -42,31 +26,6 @@ export default function PetTipe({ petType, setPetType }) {
             </MenuItem>
           ))}
         </Select>
-        {/* <Select
-          labelId="petType"
-          id="petType"
-          defaultValue={petType}
-          input={<OutlinedInput label="PetTypes" />}
-        >
-          <RadioGroup
-            onChange={(
-              event: React.ChangeEvent<HTMLInputElement>,
-              value: string
-            ) => setPetType(event.target.value)}
-            id="petType"
-            aria-labelledby="petType"
-            name="petType"
-          >
-            {petTypes.map((pt, index) => (
-              <Box key={index} className="flex ml-4">
-                <FormControlLabel value={pt} control={<Radio />} label={pt} />
-                <MenuItem value={pt}>{pt}</MenuItem>
-              </Box>
-
-            
-            ))}
-          </RadioGroup>
-        </Select> */}
       </FormControl>
     </div>
   );

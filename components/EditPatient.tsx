@@ -1,6 +1,7 @@
 import { IPatient } from "@/lib/db/models/patient";
-import { EditNotifications, Phone } from "@mui/icons-material";
+import { EditNotifications } from "@mui/icons-material";
 
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Box,
   Button,
@@ -10,39 +11,21 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useGridApiRef } from "@mui/x-data-grid";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { useContext, useEffect, useState } from "react";
+import { ObjectId } from "mongodb";
+import { useContext, useState } from "react";
 import pageContext, { PageContext } from "../contexts/pageContext";
-import PetTipe from "./petTipe";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { PatientResult } from "../pages/api/patients/[patientId]";
-import { useGridApiRef } from "@mui/x-data-grid";
+import PetTipe from "./petTipe";
 
 export default function EditPatient({ openEdit, closeEditDialog }) {
   const patientId = openEdit;
-  console.log("patientId", patientId);
-  console.log("openEdit", openEdit);
 
-  const { patients, setPatients, isEdited, setIsEdited }: PageContext =
-    useContext(pageContext);
+  const { patients, setPatients }: PageContext = useContext(pageContext);
   const patient: IPatient = patients.find((p: IPatient) => patientId === p._id);
-  const apiRef = useGridApiRef();
-
-  // console.log("patient._id", patient._id);
-  // console.log("patient", patient);
-  // console.log("patientId", patientId);
-
-  // let fetchData;
-  // useEffect(() => {
-  //   let fetchData = async () => {
-  //     let res = await fetch("/api/patients");
-  //     let data = await res.json();
-
-  //     setPatients(res);
-  //   };
-  // }, [patients]);
 
   const [name, setName] = useState(patient?.name);
   const [phone, setPhone] = useState(patient.phone);
@@ -72,7 +55,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
       patient.petName = petName;
       patient.petType = petType;
       patient.phone = phone;
-      patient.id = patient._id;
+      patient.id = patient._id as string;
       console.log("patientff", patient);
 
       setPatients((patients: IPatient[]) => {
@@ -89,15 +72,11 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
         ]);
 
         if (index > -1) {
-          // return patients.map((patient, i) =>
-          //   i === index ? { ...patient } : patient
-          // );
           let newPatients: IPatient[] = [
             ...patients.slice(0, index),
             patient,
             ...patients.slice(index + 1),
           ];
-          // setPatients(newPatients);
 
           return newPatients;
         } else {
@@ -105,26 +84,6 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
         }
       });
 
-      // const handleUpdateRow = () => {
-      //   const rowIds = apiRef.current.getAllRowIds();
-      //   const rowId = patientId;
-
-      //   apiRef.current.updateRows([{ _id: rowId, ...patient }]);
-      // };
-
-      // setPatients((patients: IPatient[]) => {
-      //   let rowToUpdateIndex: number = patients.findIndex(
-      //     (patient: IPatient) => patientId === patient._id
-      //   );
-
-      //   return patients.map((patient: IPatient, index: number) =>
-      //     index === rowToUpdateIndex ? { ...patient } : patient
-      //   );
-      // });
-      console.log(patient);
-      // apiRef.current.updateRows([{ id: patientId, patient: { ...patient } }]);
-      // handleUpdateRow();
-      // setIsEdited(isEdited);
       closeEditDialog();
     } catch (res: Response | any) {
       console.error(res.error);
@@ -139,7 +98,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
     } catch (e) {
       return;
     }
-    // setIsEdited(isEdited);
+
     closeEditDialog();
 
     console.log("itemdeleted");
@@ -162,7 +121,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
       <Dialog
         open={true}
         // TransitionComponent={Transition}
-        // keepMounted
+
         onClose={() => console.log("close")}
         onBackdropClick={closeEditDialog}
         aria-describedby="alert-dialog-slide-description"

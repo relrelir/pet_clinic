@@ -56,5 +56,4 @@ export const read = async (
   const patients: IPatient[] | any = await Patient.find();
   const result: PatientsResult = { patients };
   res?.status(200).json(result);
-  // console.log("patients", patients);
 };
