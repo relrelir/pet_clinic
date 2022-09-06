@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Pet Clinic
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
@@ -30,3 +31,7 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+=======
+# pet_clinic
+a pet clinic's dashboard manager
+>>>>>>> 44dbc45f19ce8595e11a57872d9023bfcad7d376
