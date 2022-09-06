@@ -36,7 +36,7 @@ export const PatientSchema = new Schema({
   },
   petType: {
     type: String,
-    enum: ["Dog", "Cat", "Parrot"],
+    enum: ["Dog", "Cat", "Parrot"] || String,
     required: false,
   },
 });

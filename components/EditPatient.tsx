@@ -63,9 +63,9 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
 
       let { patient }: PatientResult = result;
       console.log("patient", patient);
-      console.log("petType", petType);
+      console.log("petType", petType, typeof petType);
       console.log("phone", phone);
-      console.log("patient._id", patient._id);
+      console.log("patient._id", patient._id, typeof patient._id);
 
       patient.name = name;
       patient.petBirthDate = petBirthDate;
