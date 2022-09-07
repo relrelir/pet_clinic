@@ -55,7 +55,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
       patient.petName = petName;
       patient.petType = petType;
       patient.phone = phone;
-      patient.id = patient._id as string;
+      patient.id = patient._id as any;
       console.log("patientff", patient);
 
       setPatients((patients: IPatient[]) => {
