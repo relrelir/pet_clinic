@@ -184,7 +184,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
                     maxDate={new Date()}
                     label="Date desktop"
                     inputFormat="MM/dd/yyyy"
-                    defaultValue={petBirthDate}
+                    // defaultValue={petBirthDate}
                     value={petBirthDate}
                     onChange={setPetBirthDate}
                     renderInput={(params) => <TextField {...params} />}

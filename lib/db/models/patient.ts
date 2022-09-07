@@ -29,7 +29,7 @@ export const PatientSchema = new Schema({
     maxlength: 30,
   },
   petBirthDate: {
-    type: Date,
+    type: Date || String,
     required: false,
     max: new Date(),
     min: new Date(+new Date() - 1000 * 60 * 60 * 24 * 365 * 40),
