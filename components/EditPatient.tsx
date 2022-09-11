@@ -9,13 +9,11 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
-import { useGridApiRef } from "@mui/x-data-grid";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import { ObjectId } from "mongodb";
 import { useContext, useState } from "react";
 import pageContext, { PageContext } from "../contexts/pageContext";
 import { PatientResult } from "../pages/api/patients/[patientId]";
