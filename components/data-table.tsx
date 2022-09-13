@@ -20,7 +20,7 @@ export default function DataTable() {
   //   setOpenAdd(true);
   // };
 
-  const { patients, setPatients } = useContext(pageContext);
+  const { patients, setPatients }: any = useContext(pageContext);
 
   const columns: GridColDef[] = [
     { field: "name", headerName: "Name", width: 100, align: "center" },
