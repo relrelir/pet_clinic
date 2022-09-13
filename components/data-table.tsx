@@ -22,17 +22,17 @@ export default function DataTable() {
   const { patients, setPatients }: any = useContext(pageContext);
 
   const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", width: 100, align: "center" },
+    { field: "name", headerName: "Name", width: 300, align: "center" },
     {
       field: "phone",
       headerName: "Phone",
-      width: 100,
+      width: 300,
       align: "center",
     },
     {
       field: "petName",
       headerName: "Pet Name",
-      width: 100,
+      width: 300,
       align: "center",
     },
     {
@@ -56,7 +56,7 @@ export default function DataTable() {
     {
       field: "petType",
       headerName: "Pet Type",
-      width: 100,
+      width: 300,
       align: "center",
     },
     {
@@ -86,7 +86,7 @@ export default function DataTable() {
   return (
     <Box>
       <DataGrid
-        className="w-w-7/12 m-auto m-8"
+        // className="w-w-7/12 m-auto m-8"
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
@@ -94,14 +94,14 @@ export default function DataTable() {
             // quickFilterProps: { debounceMs: 500 },
           },
         }}
-        disableColumnFilter
+        // disableColumnFilter
         rows={patients}
         // getRowId={(patient: IPatient) => patient._id}
         columns={columns}
-        pageSize={20}
+        // pageSize={20}
         // rowsPerPageOptions={20}
         autoHeight
-        disableSelectionOnClick
+        // disableSelectionOnClick
       />
 
       <Button
