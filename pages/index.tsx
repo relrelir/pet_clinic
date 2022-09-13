@@ -1,3 +1,4 @@
+import DataTable from "@/components/data-table";
 import PetClinicDashboard from "@/components/pet-clinic-dashboard";
 import { IPatient } from "@/lib/db/models/patient";
 import fetchApi from "@/lib/fetch-api";
@@ -17,49 +18,18 @@ export const getServerSideProps: GetServerSideProps<HomePageProps> =
   async function getServerSideProps(): Promise<
     GetServerSidePropsResult<HomePageProps>
   > {
+    console.log("getServerSideProps before fetchApi");
     let { patients }: PatientsResult = await fetchApi<PatientsResult>(
       `/patients`
     );
+    console.log("getServerSideProps after fetchApi");
+
     return {
       props: {
         patients,
       },
     };
   };
-// let patients: IPatient[] = [
-//   {
-//     _id: "63166ba9caab9829a676a433",
-//     name: "eee",
-//     phone: "123456789",
-//     petName: "saf",
-//     petBirthDate: "2022-09-02T21:00:00.000Z",
-//     petType: "Cat",
-//   },
-//   {
-//     _id: "6316ff7f8280e9d72a80cdcf",
-//     name: "ariela",
-//     phone: "9876543210",
-//     petName: "saf",
-//     petBirthDate: "2022-09-04T21:00:00.000Z",
-//     petType: "Dog",
-//   },
-//   {
-//     _id: "6316ff8c8280e9d72a80cdd1",
-//     name: "ggg",
-//     phone: "0509455250",
-//     petName: "saf",
-//     petBirthDate: "2022-09-03T21:00:00.000Z",
-//     petType: "Parrot",
-//   },
-//   {
-//     _id: "63186f111d0161765334f40e",
-//     name: "survapp",
-//     phone: "0509455250",
-//     petName: "koko",
-//     petBirthDate: "2022-09-05T21:00:00.000Z",
-//     petType: "Dog",
-//   },
-// ];
 
 //HomePageProps //any72
 const Home: NextPage = (props: HomePageProps) => {
@@ -75,20 +45,17 @@ const Home: NextPage = (props: HomePageProps) => {
     }))
   );
 
-  const [isEdited, setIsEdited] = useState(false);
-
   return (
     <pageContext.Provider
       value={
         {
           patients,
           setPatients,
-          isEdited,
-          setIsEdited,
         } as PageContext
       }
     >
-      <PetClinicDashboard />
+      {/* <PetClinicDashboard /> */}
+      <DataTable />
     </pageContext.Provider>
   );
 };

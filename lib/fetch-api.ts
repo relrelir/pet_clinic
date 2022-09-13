@@ -3,7 +3,9 @@ export default async function fetchApi<Result = any>(
   init?: RequestInit
 ): Promise<Result> {
   try {
-    let res: Response = await fetch(`${process.env.API_URL}${path}`, init);
+    let url = `${process.env.API_URL}${path}`;
+    console.log(`fetchApi.url: ${url}`);
+    let res: Response = await fetch(url, init);
     let data: Result = await res.json();
     return data;
   } catch (e) {

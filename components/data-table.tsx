@@ -1,11 +1,10 @@
-import { IPatient } from "@/lib/db/models/patient";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import EditIcon from "@mui/icons-material/Edit";
 import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 import pageContext from "contexts/pageContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AddPatient from "./addPatient";
 import EditPatient from "./EditPatient";
 
@@ -92,7 +91,7 @@ export default function DataTable() {
         componentsProps={{
           toolbar: {
             showQuickFilter: true,
-            quickFilterProps: { debounceMs: 500 },
+            // quickFilterProps: { debounceMs: 500 },
           },
         }}
         disableColumnFilter

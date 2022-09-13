@@ -12,7 +12,8 @@ export default function PetClinicDashboard() {
   return (
     <Paper>
       <StyledEngineProvider injectFirst>
-        <DataTable />
+        {/* <DataTable /> */}
+        <pre>{JSON.stringify(patients, null, 2)}</pre>
       </StyledEngineProvider>
     </Paper>
   );
