@@ -1,7 +1,20 @@
+import { IPatient } from "@/lib/db/models/patient";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import EditIcon from "@mui/icons-material/Edit";
-import { Box, Button, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  TextField,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import {
+  DataGrid,
+  GridColDef,
+  GridColumnHeaderParams,
+  GridToolbar,
+} from "@mui/x-data-grid";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 import pageContext from "contexts/pageContext";
 import { useContext, useState } from "react";
@@ -20,9 +33,24 @@ export default function DataTable() {
   // };
 
   const { patients, setPatients }: any = useContext(pageContext);
+  let patientsNames = [];
+  patients.map((patient: IPatient) => patientsNames.push(patient.name));
+  console.log(patientsNames);
 
   const columns: GridColDef[] = [
-    { field: "name", headerName: "Name", width: 300, align: "center" },
+    {
+      field: "name",
+      headerName: "Name",
+      width: 300,
+      align: "center",
+      renderHeader(params: GridColumnHeaderParams) {
+        return (
+          <Box className="flex flex-col justify-center">
+            <Typography>Name</Typography>
+          </Box>
+        );
+      },
+    },
     {
       field: "phone",
       headerName: "Phone",
@@ -86,22 +114,20 @@ export default function DataTable() {
   return (
     <Box>
       <DataGrid
-        // className="w-w-7/12 m-auto m-8"
         components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
             showQuickFilter: true,
-            // quickFilterProps: { debounceMs: 500 },
+            quickFilterProps: { debounceMs: 500 },
           },
         }}
-        // disableColumnFilter
+        disableColumnFilter
         rows={patients}
-        // getRowId={(patient: IPatient) => patient._id}
         columns={columns}
-        // pageSize={20}
+        pageSize={20}
         // rowsPerPageOptions={20}
         autoHeight
-        // disableSelectionOnClick
+        disableSelectionOnClick
       />
 
       <Button

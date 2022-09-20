@@ -1,5 +1,4 @@
 import DataTable from "@/components/data-table";
-import PetClinicDashboard from "@/components/pet-clinic-dashboard";
 import { IPatient } from "@/lib/db/models/patient";
 import fetchApi from "@/lib/fetch-api";
 import type {
