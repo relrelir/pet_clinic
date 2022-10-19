@@ -115,12 +115,12 @@ export default function DataTable() {
     <Box>
       <DataGrid
         components={{ Toolbar: GridToolbar }}
-        componentsProps={{
-          toolbar: {
-            showQuickFilter: true,
-            quickFilterProps: { debounceMs: 500 },
-          },
-        }}
+        // componentsProps={{
+        //   toolbar: {
+        //     showQuickFilter: true,
+        //     quickFilterProps: { debounceMs: 500 },
+        //   },
+        // }}
         disableColumnFilter
         rows={patients}
         columns={columns}
