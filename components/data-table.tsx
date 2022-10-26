@@ -13,8 +13,8 @@ import {
   DataGrid,
   GridColDef,
   GridColumnHeaderParams,
-  // GridToolbar,
-  GridToolbarQuickFilter,
+  GridToolbar,
+  // GridToolbarQuickFilter,
 } from "@mui/x-data-grid";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 import pageContext from "contexts/pageContext";
@@ -115,13 +115,14 @@ export default function DataTable() {
   return (
     <Box>
       <DataGrid
-        components={{ Toolbar: GridToolbarQuickFilter }}
+        components={{ Toolbar: GridToolbar }}
         componentsProps={{
           toolbar: {
             showQuickFilter: true,
-            quickFilterProps: { debunceMs: 500 },
+            // quickFilterProps: { debunceMs: 500 },
           },
         }}
+        // showquickfilter={true}
         disableColumnFilter
         rows={patients}
         columns={columns}
@@ -129,6 +130,7 @@ export default function DataTable() {
         rowsPerPageOptions={[20]}
         autoHeight
         disableSelectionOnClick
+        // rowsPerPageOptions={[25, 50, 100]}
       />
 
       <Button
