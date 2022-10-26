@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<HomePageProps> =
     let { patients }: PatientsResult = await fetchApi<PatientsResult>(
       `/patients`
     );
-    console.log("getServerSideProps after fetchApi");
+    console.log("getServerSideProps after fetchApi", patients);
 
     return {
       props: {
@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps<HomePageProps> =
 //HomePageProps //any72
 const Home: NextPage = (props: HomePageProps) => {
   const [patients, setPatients] = useState(
-    props.patients?.map((pat: IPatient, index: number) => ({
+    props?.patients?.map((pat: IPatient, index: number) => ({
       _id: pat._id,
       id: pat._id,
       name: pat.name,
@@ -54,7 +54,7 @@ const Home: NextPage = (props: HomePageProps) => {
       }
     >
       {/* <PetClinicDashboard /> */}
-      <DataTable />
+      {props?.patients && <DataTable />}
     </pageContext.Provider>
   );
 };

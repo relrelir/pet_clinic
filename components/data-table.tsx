@@ -125,7 +125,7 @@ export default function DataTable() {
         rows={patients}
         columns={columns}
         pageSize={20}
-        // rowsPerPageOptions={20}
+        rowsPerPageOptions={[20]}
         autoHeight
         disableSelectionOnClick
       />
