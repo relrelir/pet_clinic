@@ -12,7 +12,7 @@ import pageContext, { PageContext } from "../contexts/pageContext";
 import { Box, CircularProgress } from "@mui/material";
 import Head from "next/head";
 import { PatientsResult } from "./api/patients";
-import Spinner from "@/components/Spinner";
+
 let startTime = new Date().getTime() / 1000;
 export interface HomePageProps extends PatientsResult {}
 
