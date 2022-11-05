@@ -1,11 +1,11 @@
-import { createContext, Dispatch, SetStateAction } from "react";
 import { IPatient } from "@/lib/db/models/patient";
+import { createContext, Dispatch, SetStateAction } from "react";
 
 export interface PageContext {
   patients?: IPatient[];
   setPatients?: any | Dispatch<SetStateAction<IPatient[]>>;
-  isEdited: boolean;
-  setIsEdited?: any | Dispatch<SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading?: any | Dispatch<SetStateAction<boolean>>;
 }
 const pageContext = (createContext as any) /*<PageContext>*/();
 

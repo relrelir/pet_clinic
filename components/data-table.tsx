@@ -1,20 +1,12 @@
 import { IPatient } from "@/lib/db/models/patient";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 import EditIcon from "@mui/icons-material/Edit";
-import {
-  Autocomplete,
-  Box,
-  Button,
-  TextField,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import {
   DataGrid,
   GridColDef,
   GridColumnHeaderParams,
   GridToolbar,
-  // GridToolbarQuickFilter,
 } from "@mui/x-data-grid";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 import pageContext from "contexts/pageContext";
@@ -34,8 +26,10 @@ export default function DataTable() {
   // };
 
   const { patients, setPatients }: any = useContext(pageContext);
+
+  console.log("patients", patients);
   let patientsNames = [];
-  patients.map((patient: IPatient) => patientsNames.push(patient.name));
+  patients?.map((patient: IPatient) => patientsNames.push(patient.name));
   console.log(patientsNames);
 
   const columns: GridColDef[] = [
@@ -122,7 +116,6 @@ export default function DataTable() {
             // quickFilterProps: { debunceMs: 500 },
           },
         }}
-        // showquickfilter={true}
         disableColumnFilter
         rows={patients}
         columns={columns}

@@ -27,3 +27,17 @@ export const withMongodb = (handler) => async (req, res) => (
 );
 
 export default withMongodb;
+
+/**
+ * client -> fetch with url: await fetch('api/initConnectionToDB')
+ * server -> make api call to mongo db and connect to DB
+ * server -> return data or OK message or error message
+ */
+
+/**
+ * client -> server // fetch("api/patients") // endpoint
+ * server -> db // User.Find() // methods of mongoose
+ * db -> server
+ * server -> client
+ *
+ */

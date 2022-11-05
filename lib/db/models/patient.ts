@@ -1,6 +1,6 @@
 import { InferSchemaWithIdType } from "@/lib/interfaces";
 import { ObjectId } from "mongodb";
-import mongoose, { InferSchemaType, Schema } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export const PatientSchema = new Schema({
   id: {

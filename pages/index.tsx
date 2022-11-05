@@ -6,23 +6,32 @@ import type {
   GetServerSidePropsResult,
   NextPage,
 } from "next";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import pageContext, { PageContext } from "../contexts/pageContext";
+import { Box, CircularProgress } from "@mui/material";
+import Head from "next/head";
 import { PatientsResult } from "./api/patients";
-
+import Spinner from "@/components/Spinner";
+let startTime = new Date().getTime() / 1000;
 export interface HomePageProps extends PatientsResult {}
 
 export const getServerSideProps: GetServerSideProps<HomePageProps> =
   async function getServerSideProps(): Promise<
     GetServerSidePropsResult<HomePageProps>
   > {
-    console.log("getServerSideProps before fetchApi");
+    console.log(
+      "getServerSideProps before fetchApi",
+      new Date().getTime() / 1000 - startTime
+    );
     let { patients }: PatientsResult = await fetchApi<PatientsResult>(
       `/patients`
     );
-    console.log("getServerSideProps after fetchApi", patients);
-
+    console.log(
+      "getServerSideProps after fetchApi",
+      new Date().getTime() / 1000 - startTime
+    );
+    console.log(patients);
     return {
       props: {
         patients,
@@ -30,8 +39,12 @@ export const getServerSideProps: GetServerSideProps<HomePageProps> =
     };
   };
 
-//HomePageProps //any72
+// //HomePageProps //any72
 const Home: NextPage = (props: HomePageProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // const { patients, setPatients }: any = useContext(pageContext);
+
   const [patients, setPatients] = useState(
     props?.patients?.map((pat: IPatient, index: number) => ({
       _id: pat._id,
@@ -50,11 +63,16 @@ const Home: NextPage = (props: HomePageProps) => {
         {
           patients,
           setPatients,
+          isLoading,
+          setIsLoading,
         } as PageContext
       }
     >
-      {/* <PetClinicDashboard /> */}
+      {/* {props?.patients ? setIsLoading(false) : setIsLoading(isLoading)} */}
       {props?.patients && <DataTable />}
+
+      {/* <DataTable patients={patients} /> */}
+      {console.log("totalTime", new Date().getTime() / 1000 - startTime)}
     </pageContext.Provider>
   );
 };

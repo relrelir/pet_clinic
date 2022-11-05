@@ -1,4 +1,4 @@
-import { InferSchemaType, ObjectId, MongooseError } from "mongoose";
+import { InferSchemaType, MongooseError, ObjectId } from "mongoose";
 
 export type InferSchemaWithIdType<T> = InferSchemaType<T> & {
   _id?: ObjectId | string;
