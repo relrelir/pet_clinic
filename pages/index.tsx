@@ -1,19 +1,52 @@
 import DataTable from "@/components/data-table";
 import { IPatient } from "@/lib/db/models/patient";
 import fetchApi from "@/lib/fetch-api";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import type {
   GetServerSideProps,
   GetServerSidePropsResult,
   NextPage,
 } from "next";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 import pageContext, { PageContext } from "../contexts/pageContext";
-import { Box, CircularProgress } from "@mui/material";
-import Head from "next/head";
 import { PatientsResult } from "./api/patients";
+import { Button } from "@mui/material";
 
 let startTime = new Date().getTime() / 1000;
+
+// const themeLight = createTheme({
+//   palette: {
+//     background: {
+//       default: "#e4f0e2",
+//     },
+//   },
+// });
+
+// const themeDark = createTheme({
+//   palette: {
+//     background: {
+//       default: "#222222",
+//     },
+//     text: {
+//       primary: "#ffffff",
+//     },
+//   },
+// });
+
+const defaultTheme = createTheme();
+
+// const theme = createTheme({
+//   overrides: {
+//     MuiDataGrid: {
+//       root: {
+//         fontFamily: ["Cormorant", "serif"].join(","),
+//       },
+//     },
+//   },
+// });
+
 export interface HomePageProps extends PatientsResult {}
 
 export const getServerSideProps: GetServerSideProps<HomePageProps> =
@@ -39,11 +72,8 @@ export const getServerSideProps: GetServerSideProps<HomePageProps> =
     };
   };
 
-// //HomePageProps //any72
 const Home: NextPage = (props: HomePageProps) => {
   const [isLoading, setIsLoading] = useState(true);
-
-  // const { patients, setPatients }: any = useContext(pageContext);
 
   const [patients, setPatients] = useState(
     props?.patients?.map((pat: IPatient, index: number) => ({
@@ -68,10 +98,8 @@ const Home: NextPage = (props: HomePageProps) => {
         } as PageContext
       }
     >
-      {/* {props?.patients ? setIsLoading(false) : setIsLoading(isLoading)} */}
       {props?.patients && <DataTable />}
 
-      {/* <DataTable patients={patients} /> */}
       {console.log("totalTime", new Date().getTime() / 1000 - startTime)}
     </pageContext.Provider>
   );

@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -16,8 +16,10 @@ import { useContext, useState } from "react";
 import pageContext, { PageContext } from "../contexts/pageContext";
 import { PatientResult } from "../pages/api/patients";
 import PetTipe from "./petTipe";
+import { useTheme } from "@mui/material/styles";
 
 export default function AddPatient({ openAdd, setOpenAdd }) {
+  const theme = useTheme();
   const [name, setName] = useState(null);
   const [phone, setPhone] = useState(null);
   const [petName, setPetName] = useState(null);
@@ -54,12 +56,11 @@ export default function AddPatient({ openAdd, setOpenAdd }) {
     <Dialog
       open={openAdd}
       // TransitionComponent={Transition}
-      keepMounted
+      // keepMounted
       onClose={handleCloseAdd}
       aria-describedby="alert-dialog-slide-description"
     >
       <DialogTitle>
-        {" "}
         <Box className="flex flex-row items-center gap-4 scale-150 mx-24 mt-4  ">
           <AddCircleTwoToneIcon />
           <Typography>Add Patient</Typography>
@@ -71,30 +72,32 @@ export default function AddPatient({ openAdd, setOpenAdd }) {
           method="POST"
           onSubmit={(e) => (e.preventDefault(), createPatient())}
         >
-          <Box className="flex flex-col gap-8 w-1/2 ">
+          <Box className="flex flex-col mt-4 gap-4 w-1/2 ">
             <Box className="flex flex-row items-center justify-between">
-              <Typography>Name:</Typography>
-              <TextField onChange={(e) => setName(e.target.value)} id="name" />
+              <TextField
+                label="Name:"
+                onChange={(e) => setName(e.target.value)}
+                id="name"
+              />
             </Box>
             <Box className="flex flex-row items-center justify-between">
-              <Typography>Phone:</Typography>
               <TextField
+                label="Phone:"
                 onChange={(e) => setPhone(e.target.value)}
                 id="phone"
               />
             </Box>
             <Box className="flex flex-row items-center justify-between">
-              <Typography>Pet Name:</Typography>
               <TextField
+                label="Pet Name:"
                 onChange={(e) => setPetName(e.target.value)}
                 id="petName"
               />
             </Box>
             <Box className="flex flex-row items-center justify-between">
-              <Typography>Pet Birth Date:</Typography>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DesktopDatePicker
-                  label="Date desktop"
+                  label="Pet Birthday"
                   inputFormat="MM/dd/yyyy"
                   value={petBirthDate}
                   onChange={handleDatePickerChange}
@@ -103,7 +106,6 @@ export default function AddPatient({ openAdd, setOpenAdd }) {
               </LocalizationProvider>
             </Box>
             <Box className="flex flex-row items-center justify-between">
-              <Typography>Pet Type:</Typography>
               <PetTipe petType={petType} setPetType={setPetType} />
             </Box>
             <Box className="flex flex-row items-center justify-evenly">

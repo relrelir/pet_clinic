@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -128,7 +128,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
           {" "}
           <Box className="flex flex-row items-center gap-4 scale-150 mx-20 mt-4  ">
             <EditNotifications />
-            <Typography>Edit Patient</Typography>
+            {/* <Typography>Edit Patient</Typography> */}
             <Button onClick={handleDeletePatient}>
               <DeleteIcon />
             </Button>
@@ -142,8 +142,9 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
           >
             <Box className="flex flex-col gap-8 w-1/2 ">
               <Box className="flex flex-row items-center justify-between">
-                <Typography>Name:</Typography>
+                {/* <Typography>Name:</Typography> */}
                 <TextField
+                  label="Name"
                   required
                   autoFocus
                   inputProps={{ maxLength: 30, minLength: 2 }}
@@ -154,8 +155,9 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
                 />
               </Box>
               <Box className="flex flex-row items-center justify-between">
-                <Typography>Phone:</Typography>
+                {/* <Typography>Phone:</Typography> */}
                 <TextField
+                  label="Phone"
                   required
                   type="tel"
                   defaultValue={phone}
@@ -167,20 +169,21 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
                 />
               </Box>
               <Box className="flex flex-row items-center justify-between">
-                <Typography>Pet Name:</Typography>
+                {/* <Typography>Pet Name:</Typography> */}
                 <TextField
+                  label="Pet Name"
                   defaultValue={petName}
                   onChange={(e) => setPetName(e.target.value)}
                   id="petName"
                 />
               </Box>
               <Box className="flex flex-row items-center justify-between">
-                <Typography>Pet Birth Date:</Typography>
+                {/* <Typography>Pet Birth Date:</Typography> */}
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <DesktopDatePicker
                     minDate={new Date("2000-01-01")}
                     maxDate={new Date()}
-                    label="Date desktop"
+                    label="Date"
                     inputFormat="MM/dd/yyyy"
                     // defaultValue={petBirthDate}
                     value={petBirthDate}
@@ -190,7 +193,7 @@ export default function EditPatient({ openEdit, closeEditDialog }) {
                 </LocalizationProvider>
               </Box>
               <Box className="flex flex-row items-center justify-between">
-                <Typography>Pet Type:</Typography>
+                {/* <Typography>Pet Type:</Typography> */}
                 <PetTipe petType={petType} setPetType={setPetType} />
               </Box>
               <Box className="flex flex-row items-center justify-evenly">

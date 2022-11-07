@@ -25,7 +25,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.54.5",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "typeface-cormorant": "^1.1.13"
   },
   "devDependencies": {
     "@types/node": "18.6.5",
